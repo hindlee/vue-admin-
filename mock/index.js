@@ -1,12 +1,16 @@
 const Mock = require('mockjs')
-const { param2Obj } = require('./utils')
+const { param2Obj,changeNodeToRented } = require('./utils')
 
 const user = require('./user')
 const table = require('./table')
+const information = require('./information.js')
+const map = require('./map.js')
 
 const mocks = [
   ...user,
-  ...table
+  ...table,
+  ...information,
+  ...map
 ]
 
 // for front mock
