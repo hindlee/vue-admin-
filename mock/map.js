@@ -1,4 +1,4 @@
-const data =[
+var data =[
     {
         id: 1,
         label: 'A栋',
@@ -136,8 +136,8 @@ module.exports = [
     { url: '/vue-admin-template/map/rentingMap',
         type: 'post',
         response: config => {
-            // const data  = data      // mock error
-            data = changeNodeToRented(data,config.query.data)
+		// const data  = data      // mock error
+		changeNodeToRented(data,config.query.data)
             return {
                 code: 20000,
                 data

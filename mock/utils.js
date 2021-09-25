@@ -23,11 +23,10 @@ function param2Obj(url) {
 function changeNodeToRented(data,id){
     data.forEach((item) => {
         if(item.children){
-            changeNodeToRented(item.children,id)
+             changeNodeToRented(item.children,id)
         }else{
-            if(item.id===id){
+            if(item.id==id){
                 item.isRented = true
-                return data
             }
         }
      })
