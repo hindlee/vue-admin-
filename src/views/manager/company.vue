@@ -61,8 +61,8 @@ export default {
             visible:false
         }
     },
-    methods: {
 
+    methods: {
         findCompanyWorkSection(nodes,companyname,data){
             data.forEach((item) => {
                 if(!item.children){

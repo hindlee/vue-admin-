@@ -13,3 +13,10 @@ export function rentingMap(data){
                    params:{data}                    
     })
 }
+export function addWorkSection(data){
+	return request({
+		url: '/vue-admin-template/map/addWorkSection',
+		method: 'post',
+		params:data                    
+	})
+}

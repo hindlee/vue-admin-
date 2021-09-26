@@ -31,8 +31,24 @@ function changeNodeToRented(data,id){
         }
      })
 }
+function addWorkSection(data,form){
+    data.forEach((item) => {
+        if(item.id == form.farNodeId){
+            delete form.farNodeId
+            item.children.unshift(form)
+            return 1
+        } })
+    data.forEach((item) => {
+        if(item.children){
+            if(addWorkSection(item.children,form)){
+                return 1
+            }
+        }
+    })
+}
 
 module.exports = {
     param2Obj,
-    changeNodeToRented
+    changeNodeToRented,
+    addWorkSection
 }

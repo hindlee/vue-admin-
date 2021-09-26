@@ -18,7 +18,7 @@
                     <el-input v-model="form.company"></el-input>
                 </el-form-item>
                 <el-form-item v-if='form.isRented' label="联系人电话">
-                    <el-input v-model="form.label"></el-input>
+                    <el-input v-model="form.phone"></el-input>
                 </el-form-item>
                 <el-form-item v-if='form.isRented' label="出租时间">
                     <el-col :span="11">
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-
+import store from '@/store'
 export default {
     name: 'appendNode',
 
@@ -51,6 +51,9 @@ export default {
         visible:{
             type: Boolean,
             default: false
+        },
+        id:{
+            type: Number,
         }
     },
 
@@ -79,6 +82,8 @@ export default {
 
     methods:{
         onSubmit(){
+            this.form.farNodeId = this.id
+            store.dispatch('map/addWorkSection', this.form )
             this.$emit('changeVisibleAppendNode')
         }
     }

@@ -42,7 +42,7 @@
             </el-tree>
         </div>
         <nodeInfo :dialogFormVisible='nodeInfoVisible' :nodeInfo='nodeInfo' v-on:changeVisibleNodeInfo='changeVisibleNodeInfo'></nodeInfo>
-        <appendNode :visible='appendNodeVisible' :data='appendNodeInfo' v-on:changeVisibleAppendNode='changeVisibleAppendNode'></appendNode>
+        <appendNode :visible='appendNodeVisible' :id='farNodeId' :data='appendNodeInfo' v-on:changeVisibleAppendNode='changeVisibleAppendNode'></appendNode>
     </div>
 </template>
 
@@ -69,6 +69,7 @@ export default{
             nodeInfoVisible: false,
             nodeInfo:null,
             appendNodeVisible: false,
+            farNodeId:0,
             appendNodeInfo:{
                 id: '',
                 label: '',
@@ -101,7 +102,6 @@ export default{
                     if(item.isRented){
                         item.rentedState = '已租'    
                     }
-
                 }   
 
             })
@@ -115,18 +115,19 @@ export default{
                 this.nodeInfoVisible=true
             }
         },
+        
 
         changeVisibleAppendNode(){
+            this.getMap()
             this.appendNodeInfo={
                 id: 1001,
                 label: '',
                 linkman: '',
                 phone: '',
-                company: '',
+        		company: '',
                 isRented: null,
-                rentedItem: '',
+	        	rentedItem: '',
             }
-            console.log(this.appendNodeInfo)
 
             if(this.appendNodeVisible){
                 this.appendNodeVisible=false
@@ -153,16 +154,14 @@ export default{
         },
 
         appendWorkSecton(){
-            this.$refs.tree.getCheckedNodes().forEach((item) => {
+            this.$refs.tree.getCheckedNodes().forEach((item) => {                                       
                 this.append(item)
             });
         },
 
         append(data) {
+            this.farNodeId=data.id
             this.changeVisibleAppendNode()
-            const newChild = this.appendNodeInfo
-            newChild.id=id++    
-            data.children.push(newChild);
         },
 
         remove(node, data) {

@@ -1,4 +1,4 @@
-import { getMap, rentingMap } from '@/api/map'
+import { getMap, rentingMap, addWorkSection } from '@/api/map'
 import { mapGetters } from 'vuex'
 
 const state = {
@@ -18,6 +18,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             getMap().then(response => {
                 const { data } = response
+                console.log(data)
                 if (!data) {
                     return reject('load faild')
                 }
@@ -43,6 +44,22 @@ const actions = {
             })
         })
     },
+    //add new work Section
+    addWorkSection({ commit },data ) { 
+        return new Promise((resolve, reject) => {
+            addWorkSection(data).then(response => {
+                const { data } = response
+                if (!data) {
+                    return reject('load faild')
+                }
+                commit('SET_MAPDATA', data)
+                resolve(data)
+            }).catch(error => {
+                reject(error)
+            })
+        })
+    },
+
 }
 
 export default {
