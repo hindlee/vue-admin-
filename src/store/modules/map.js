@@ -18,7 +18,6 @@ const actions = {
         return new Promise((resolve, reject) => {
             getMap().then(response => {
                 const { data } = response
-                console.log(data)
                 if (!data) {
                     return reject('load faild')
                 }

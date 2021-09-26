@@ -7,7 +7,7 @@
                 </el-form-item>
                 <el-form-item label="出租">
                     <el-select v-model="form.isRented" placeholder="是否已经出租">
-                        <el-option label="是" value= '1' ></el-option>
+                        <el-option label="是" value= 'true'  ></el-option>
                         <el-option label="否" value= '' ></el-option>
                     </el-select>
                 </el-form-item>
@@ -84,6 +84,9 @@ export default {
         onSubmit(){
             this.form.farNodeId = this.id
             store.dispatch('map/addWorkSection', this.form )
+            if(this.form.isRented == 'true'){
+                    store.dispatch('map/rentingMap',this.form.id)
+            }
             this.$emit('changeVisibleAppendNode')
         }
     }
